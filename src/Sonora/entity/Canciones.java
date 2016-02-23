@@ -1,10 +1,12 @@
 package Sonora.entity;
 
+import java.util.Set;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.ManyToMany;
 
 @Entity
 public class Canciones {
@@ -16,16 +18,18 @@ public class Canciones {
 	private String cnombre;
 	private int creproducciones;
 	private int cdescargas;
-	@ManyToOne
-	private Album album;
 	
-	public Canciones(int cid, String cnombre, int creproducciones, int cdescargas, Album album) {
+	@ManyToMany(targetEntity=Artista.class)
+	private Set cancionSet;
+	
+
+	public Canciones(int cid, String cnombre, int creproducciones, int cdescargas, Set cancionSet) {
 		super();
 		this.cid = cid;
 		this.cnombre = cnombre;
 		this.creproducciones = creproducciones;
 		this.cdescargas = cdescargas;
-		this.album = album;
+		this.cancionSet = cancionSet;
 	}
 
 	public Canciones() {
@@ -65,11 +69,13 @@ public class Canciones {
 		this.cdescargas = cdescargas;
 	}
 
-	public Album getAlbum() {
-		return album;
+	public Set getCancionSet() {
+		return cancionSet;
 	}
 
-	public void setAlbum(Album album) {
-		this.album = album;
+	public void setCancionSet(Set cancionSet) {
+		this.cancionSet = cancionSet;
 	}
+
+	
 }
