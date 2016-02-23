@@ -13,23 +13,22 @@ public class Canciones {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	
 	private int cid;
 	private String cnombre;
 	private int creproducciones;
 	private int cdescargas;
 	
 	@ManyToMany(targetEntity=Artista.class)
-	private Set cancionSet;
+	private Set artistaSet;
 	
 
-	public Canciones(int cid, String cnombre, int creproducciones, int cdescargas, Set cancionSet) {
+	public Canciones(int cid, String cnombre, int creproducciones, int cdescargas, Set artistaSet) {
 		super();
 		this.cid = cid;
 		this.cnombre = cnombre;
 		this.creproducciones = creproducciones;
 		this.cdescargas = cdescargas;
-		this.cancionSet = cancionSet;
+		this.artistaSet = artistaSet;
 	}
 
 	public Canciones() {
@@ -69,13 +68,18 @@ public class Canciones {
 		this.cdescargas = cdescargas;
 	}
 
-	public Set getCancionSet() {
-		return cancionSet;
+	public Set getArtistaSet() {
+		return artistaSet;
 	}
 
-	public void setCancionSet(Set cancionSet) {
-		this.cancionSet = cancionSet;
+	public void setArtistaSet(Set cancionSet) {
+		this.artistaSet = artistaSet;
 	}
 
+	@Override
+	public String toString() {
+		return "Canciones [cid=" + cid + ", cnombre=" + cnombre + ", creproducciones=" + creproducciones
+				+ ", cdescargas=" + cdescargas + ", artistaSet=" + artistaSet + "]";
+	}
 	
 }
